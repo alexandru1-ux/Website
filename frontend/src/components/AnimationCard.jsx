@@ -14,6 +14,12 @@ export const AnimationCard = ({ animation, onClick }) => {
           alt={animation.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
+        {/* Watermark Overlay */}
+        <img
+          src="/watermark.png"
+          alt="GoldenFX Watermark"
+          className="absolute bottom-2 right-2 w-10 h-10 opacity-60 pointer-events-none z-10"
+        />
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button className="bg-[#FFE000] text-black hover:bg-[#FFE000]/90 border-none font-bold">
             View Details
