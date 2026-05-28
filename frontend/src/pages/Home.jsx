@@ -59,14 +59,30 @@ export const Home = () => {
             About Me
           </h2>
           <div className="bg-[#0a0a0a] border border-[#FFE000] rounded-lg p-8 md:p-12">
-            <p className="text-white text-lg leading-relaxed">
-              Hey! I'm GoldenFX, a passionate Roblox animator specializing in creating dynamic, 
-              high-quality animations that bring characters and stories to life. From smooth walk 
-              cycles to intense combat sequences and cinematic cutscenes, I focus on delivering 
-              polished motion work that enhances gameplay experiences. Whether it's crafting 
-              expressive emotes or epic boss battles, I'm dedicated to pushing the boundaries 
-              of what's possible in Roblox animation.
-            </p>
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+              {/* Profile Picture */}
+              <div className="flex-shrink-0">
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-[#FFE000] blur-md opacity-50 animate-pulse"></div>
+                  <img
+                    src="/pfp.png"
+                    alt="GoldenFX Profile"
+                    className="relative w-[120px] h-[120px] md:w-[160px] md:h-[160px] rounded-full object-cover border-4 border-[#FFE000] shadow-[0_0_20px_rgba(255,224,0,0.6)]"
+                  />
+                </div>
+              </div>
+              {/* Bio Text */}
+              <div className="flex-1">
+                <p className="text-white text-lg leading-relaxed">
+                  Hey! I'm GoldenFX, a passionate Roblox animator specializing in creating dynamic, 
+                  high-quality animations that bring characters and stories to life. From smooth walk 
+                  cycles to intense combat sequences and cinematic cutscenes, I focus on delivering 
+                  polished motion work that enhances gameplay experiences. Whether it's crafting 
+                  expressive emotes or epic boss battles, I'm dedicated to pushing the boundaries 
+                  of what's possible in Roblox animation.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
