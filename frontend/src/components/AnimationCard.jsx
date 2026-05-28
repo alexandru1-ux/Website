@@ -3,17 +3,30 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 
 export const AnimationCard = ({ animation, onClick }) => {
+  const isVideoThumbnail = animation.thumbnail_url?.endsWith('.mp4') || animation.thumbnail_url?.endsWith('.webm');
+  
   return (
     <Card
       className="bg-[#0a0a0a] border-[#FFE000] hover:shadow-[0_0_12px_rgba(255,224,0,0.3)] transition-all duration-300 overflow-hidden group cursor-pointer"
       onClick={onClick}
     >
       <div className="relative aspect-video overflow-hidden">
-        <img
-          src={animation.thumbnail_url}
-          alt={animation.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+        {isVideoThumbnail ? (
+          <video
+            src={animation.thumbnail_url}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            muted
+            loop
+            autoPlay
+            playsInline
+          />
+        ) : (
+          <img
+            src={animation.thumbnail_url}
+            alt={animation.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+        )}
         {/* Watermark Overlay */}
         <img
           src="/watermark.png"

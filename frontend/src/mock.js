@@ -6,8 +6,8 @@ export const mockAnimations = [
     title: 'Dynamic Walk Cycle',
     description: 'Smooth and natural walking animation with weight distribution and follow-through.',
     category: 'Walk Cycle',
-    video_url: 'https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800',
-    thumbnail_url: 'https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400',
+    video_url: '/walk-cycle-demo.mp4',
+    thumbnail_url: '/walk-cycle-demo.mp4',
     created_at: '2024-01-15'
   },
   {
@@ -51,8 +51,8 @@ export const mockAnimations = [
     title: 'Sprint Animation',
     description: 'High-speed running animation with exaggerated motion for action sequences.',
     category: 'Walk Cycle',
-    video_url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800',
-    thumbnail_url: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400',
+    video_url: '/walk-cycle-demo.mp4',
+    thumbnail_url: '/walk-cycle-demo.mp4',
     created_at: '2024-02-20'
   }
 ];
