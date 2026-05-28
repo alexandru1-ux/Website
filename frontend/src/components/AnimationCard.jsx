@@ -10,11 +10,11 @@ export const AnimationCard = ({ animation, onClick }) => {
       className="bg-[#0a0a0a] border-[#FFE000] hover:shadow-[0_0_12px_rgba(255,224,0,0.3)] transition-all duration-300 overflow-hidden group cursor-pointer"
       onClick={onClick}
     >
-      <div className="relative aspect-video overflow-hidden">
+      <div className="relative aspect-video overflow-hidden bg-black">
         {isVideoThumbnail ? (
           <video
             src={animation.thumbnail_url}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             muted
             loop
             autoPlay

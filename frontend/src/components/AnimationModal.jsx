@@ -16,11 +16,11 @@ export const AnimationModal = ({ animation, open, onClose }) => {
           </DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
-          <div className="relative aspect-video rounded-lg overflow-hidden border border-[#FFE000]/30">
+          <div className="relative aspect-video rounded-lg overflow-hidden border border-[#FFE000]/30 bg-black">
             {isVideo ? (
               <video
                 src={animation.video_url}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
                 controls
                 autoPlay
                 loop
