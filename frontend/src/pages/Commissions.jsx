@@ -1,5 +1,6 @@
 import React from 'react';
 import { Check, MessageSquare, Sparkles } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import {
@@ -10,9 +11,9 @@ import {
 } from '../components/ui/accordion';
 import { SectionReveal } from '../components/SectionReveal';
 import { LightningDivider } from '../components/LightningDivider';
-import { useToast } from '../hooks/use-toast';
 
 const DISCORD_HANDLE = 'xxgoldenxx0863';
+const DISCORD_URL = 'https://discord.com/';
 
 const standardFeatures = [
   'Walk Cycle',
@@ -62,13 +63,20 @@ const steps = [
 ];
 
 export const Commissions = () => {
-  const { toast } = useToast();
+  const openDiscord = () => {
+    window.open(DISCORD_URL, '_blank', 'noopener,noreferrer');
+  };
 
   const copyDiscord = () => {
     navigator.clipboard.writeText(DISCORD_HANDLE);
-    toast({
-      title: 'Discord handle copied!',
-      description: `${DISCORD_HANDLE} — paste it on Discord to find me.`
+    toast('Copied to Clipboard', {
+      description: DISCORD_HANDLE,
+      style: {
+        background: '#FFFFFF',
+        color: '#000000',
+        border: '1px solid #FFE000',
+        boxShadow: '0 0 16px rgba(255, 224, 0, 0.5)'
+      }
     });
   };
 
@@ -130,7 +138,7 @@ export const Commissions = () => {
 
                 <Button
                   data-testid="standard-order-btn"
-                  onClick={copyDiscord}
+                  onClick={openDiscord}
                   className="w-full bg-black text-[#FFE000] border-2 border-[#FFE000] hover:bg-[#FFE000] hover:text-black font-bold py-6 transition-all duration-300"
                 >
                   <MessageSquare className="mr-2" size={18} />
@@ -168,7 +176,7 @@ export const Commissions = () => {
 
                 <Button
                   data-testid="special-contact-btn"
-                  onClick={copyDiscord}
+                  onClick={openDiscord}
                   className="w-full bg-[#FFE000] text-black border-2 border-[#FFE000] hover:bg-black hover:text-[#FFE000] font-bold py-6 transition-all duration-300"
                 >
                   <MessageSquare className="mr-2" size={18} />
