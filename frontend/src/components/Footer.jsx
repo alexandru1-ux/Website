@@ -3,13 +3,13 @@ import { Twitter } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="bg-black border-t border-[#FFE000]/20 py-8">
+    <footer className="bg-black border-t border-[#FFE000]/20 py-8 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[#FFE000] font-medium">
             © {new Date().getFullYear()} GoldenFX
           </p>
-          <div className="flex items-center gap-6 text-[#FFE000]">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-[#FFE000]">
             <a
               href="https://x.com/xxgoldenxx0863"
               target="_blank"
@@ -18,6 +18,18 @@ export const Footer = () => {
             >
               <Twitter size={18} />
               <span>xxgoldenxx0863</span>
+            </a>
+            <span className="text-[#FFE000]/40">|</span>
+            <a
+              href="https://www.youtube.com/@G0ldenAnims_gg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-white transition-colors"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="#FF0000">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+              <span>G0ldenAnims_gg</span>
             </a>
             <span className="text-[#FFE000]/40">|</span>
             <div className="flex items-center gap-2">
