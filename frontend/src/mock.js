@@ -51,8 +51,8 @@ export const mockAnimations = [
     title: 'Sprint Animation',
     description: 'High-speed running animation with exaggerated motion for action sequences.',
     category: 'Walk Cycle',
-    video_url: '/walk-cycle-demo.mp4',
-    thumbnail_url: '/walk-cycle-demo.mp4',
+    video_url: '/sprint-demo.mp4',
+    thumbnail_url: '/sprint-demo.mp4',
     created_at: '2024-02-20'
   }
 ];
