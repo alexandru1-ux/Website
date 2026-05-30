@@ -42,8 +42,8 @@ export const mockAnimations = [
     title: 'Idle Animation Loop',
     description: 'Subtle idle animation with breathing and micro-movements for natural character presence.',
     category: 'Other',
-    video_url: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800',
-    thumbnail_url: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400',
+    video_url: '/idle-demo.mp4',
+    thumbnail_url: '/idle-demo.mp4',
     created_at: '2024-02-15'
   },
   {
