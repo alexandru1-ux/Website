@@ -21,11 +21,11 @@ export const mockAnimations = [
   },
   {
     id: '3',
-    title: 'Victory Dance Emote',
+    title: 'Victory Emote',
     description: 'Energetic celebration emote with personality and character expression.',
     category: 'Emote',
-    video_url: 'https://images.unsplash.com/photo-1574192324001-ee41e18ed679?w=800',
-    thumbnail_url: 'https://images.unsplash.com/photo-1574192324001-ee41e18ed679?w=400',
+    video_url: '/victory-emote.mp4',
+    thumbnail_url: '/victory-emote.mp4',
     created_at: '2024-02-01'
   },
   {
