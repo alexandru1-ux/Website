@@ -11,13 +11,13 @@ export const mockAnimations = [
     created_at: '2024-01-15'
   },
   {
-    id: '2',
-    title: 'Sword Combat Combo',
-    description: 'Fast-paced sword combat animation with dynamic camera angles and impact frames.',
-    category: 'Combat',
-    video_url: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800',
-    thumbnail_url: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400',
-    created_at: '2024-01-20'
+    id: '5',
+    title: 'Idle Animation Loop',
+    description: 'Subtle idle animation with breathing and micro-movements for natural character presence.',
+    category: 'Other',
+    video_url: '/idle-demo.mp4',
+    thumbnail_url: '/idle-demo.mp4',
+    created_at: '2024-02-15'
   },
   {
     id: '3',
@@ -38,15 +38,6 @@ export const mockAnimations = [
     created_at: '2024-02-10'
   },
   {
-    id: '5',
-    title: 'Idle Animation Loop',
-    description: 'Subtle idle animation with breathing and micro-movements for natural character presence.',
-    category: 'Other',
-    video_url: '/idle-demo.mp4',
-    thumbnail_url: '/idle-demo.mp4',
-    created_at: '2024-02-15'
-  },
-  {
     id: '6',
     title: 'Sprint Animation',
     description: 'High-speed running animation with exaggerated motion for action sequences.',
@@ -57,4 +48,4 @@ export const mockAnimations = [
   }
 ];
 
-export const categories = ['All', 'Walk Cycle', 'Combat', 'Emote', 'Cutscene', 'Other'];
+export const categories = ['All', 'Walk Cycle', 'Emote', 'Cutscene', 'Other'];
