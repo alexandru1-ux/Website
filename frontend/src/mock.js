@@ -33,8 +33,8 @@ export const mockAnimations = [
     title: 'Epic Boss Entrance',
     description: 'Cinematic cutscene animation featuring dramatic lighting and camera work.',
     category: 'Cutscene',
-    video_url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800',
-    thumbnail_url: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400',
+    video_url: '/boss-entrance.mp4',
+    thumbnail_url: '/boss-entrance.mp4',
     created_at: '2024-02-10'
   },
   {
