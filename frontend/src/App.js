@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Home } from "@/pages/Home";
 import { Admin } from "@/pages/Admin";
+import { Commissions } from "@/pages/Commissions";
 import { Toaster } from "@/components/ui/sonner";
 import { ParticleRain } from "@/components/ParticleRain";
 import { LightningScroll } from "@/components/LightningScroll";
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/commissions" element={<Commissions />} />
         </Routes>
         <Footer />
         <Toaster />

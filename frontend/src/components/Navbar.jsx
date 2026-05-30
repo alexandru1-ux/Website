@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Trigger glow once user scrolls past ~80% of viewport (past hero)
       setScrolled(window.scrollY > window.innerHeight * 0.6);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -17,12 +18,24 @@ export const Navbar = () => {
   }, []);
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }
+    setIsOpen(false);
   };
+
+  const goToCommissions = () => {
+    navigate('/commissions');
+    setIsOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const isCommissions = location.pathname === '/commissions';
 
   return (
     <nav
@@ -55,6 +68,14 @@ export const Navbar = () => {
               className="text-white hover:text-[#FFE000] transition-colors font-medium"
             >
               Contact
+            </button>
+            <button
+              onClick={goToCommissions}
+              className={`transition-colors font-medium ${
+                isCommissions ? 'text-[#FFE000]' : 'text-white hover:text-[#FFE000]'
+              }`}
+            >
+              Commissions
             </button>
           </div>
 
@@ -89,6 +110,14 @@ export const Navbar = () => {
               className="block w-full text-left text-white hover:text-[#FFE000] transition-colors font-medium py-2"
             >
               Contact
+            </button>
+            <button
+              onClick={goToCommissions}
+              className={`block w-full text-left transition-colors font-medium py-2 ${
+                isCommissions ? 'text-[#FFE000]' : 'text-white hover:text-[#FFE000]'
+              }`}
+            >
+              Commissions
             </button>
           </div>
         </div>
