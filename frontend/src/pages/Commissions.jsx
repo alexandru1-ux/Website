@@ -13,7 +13,6 @@ import { SectionReveal } from '../components/SectionReveal';
 import { LightningDivider } from '../components/LightningDivider';
 
 const DISCORD_HANDLE = 'xxgoldenxx0863';
-const DISCORD_URL = 'https://discord.com/';
 
 const standardFeatures = [
   'Walk Cycle',
@@ -63,8 +62,8 @@ const steps = [
 ];
 
 export const Commissions = () => {
-  const openDiscord = () => {
-    window.open(DISCORD_URL, '_blank', 'noopener,noreferrer');
+  const scrollToCTA = () => {
+    document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   const copyDiscord = () => {
@@ -138,7 +137,7 @@ export const Commissions = () => {
 
                 <Button
                   data-testid="standard-order-btn"
-                  onClick={openDiscord}
+                  onClick={scrollToCTA}
                   className="w-full bg-black text-[#FFE000] border-2 border-[#FFE000] hover:bg-[#FFE000] hover:text-black font-bold py-6 transition-all duration-300"
                 >
                   <MessageSquare className="mr-2" size={18} />
@@ -176,7 +175,7 @@ export const Commissions = () => {
 
                 <Button
                   data-testid="special-contact-btn"
-                  onClick={openDiscord}
+                  onClick={scrollToCTA}
                   className="w-full bg-[#FFE000] text-black border-2 border-[#FFE000] hover:bg-black hover:text-[#FFE000] font-bold py-6 transition-all duration-300"
                 >
                   <MessageSquare className="mr-2" size={18} />
@@ -249,7 +248,7 @@ export const Commissions = () => {
 
       {/* Final CTA */}
       <SectionReveal>
-        <section className="px-4 py-16">
+        <section id="cta-section" className="px-4 py-16">
           <div className="max-w-3xl mx-auto text-center bg-[#0a0a0a] border-2 border-[#FFE000] rounded-lg p-12 shadow-[0_0_24px_rgba(255,224,0,0.3)]">
             <h3 className="text-3xl md:text-4xl font-bold text-[#FFE000] mb-4">
               Ready to Get Started?
