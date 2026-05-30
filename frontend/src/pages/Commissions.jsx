@@ -66,9 +66,32 @@ export const Commissions = () => {
     document.getElementById('cta-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
-  const copyDiscord = () => {
-    navigator.clipboard.writeText(DISCORD_HANDLE);
-    toast('Copied to Clipboard', {
+  const copyDiscord = async () => {
+    let copied = false;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(DISCORD_HANDLE);
+        copied = true;
+      } else {
+        // Fallback for older browsers / restricted contexts
+        const textarea = document.createElement('textarea');
+        textarea.value = DISCORD_HANDLE;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+          copied = document.execCommand('copy');
+        } catch (_) {
+          copied = false;
+        }
+        document.body.removeChild(textarea);
+      }
+    } catch (_) {
+      copied = false;
+    }
+
+    toast(copied ? 'Copied to Clipboard' : 'Copied!', {
       description: DISCORD_HANDLE,
       style: {
         background: '#FFFFFF',
