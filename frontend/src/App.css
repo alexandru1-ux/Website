@@ -1,6 +1,7 @@
-/* Remove default centering */
+/* Base App Styles */
 .App {
   min-height: 100vh;
+  position: relative;
 }
 
 /* Smooth scroll behavior */
@@ -8,7 +9,26 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom animations */
+/* Hide default cursor on desktop only */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  body * {
+    cursor: none !important;
+  }
+}
+
+/* Ensure content stays above particle canvas */
+nav,
+main,
+section,
+footer,
+.relative {
+  position: relative;
+  z-index: 2;
+}
+
+/* ===== Animations ===== */
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -24,9 +44,338 @@ html {
   animation: fade-in 0.8s ease-out;
 }
 
-/* Button transitions - specific, not universal */
+/* Section entrance animation with electric flash */
+@keyframes section-electric-flash {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: brightness(1) drop-shadow(0 0 0 transparent);
+  }
+  20% {
+    opacity: 1;
+    filter: brightness(1.3) drop-shadow(0 0 30px rgba(255, 224, 0, 0.6));
+  }
+  40% {
+    filter: brightness(1.1) drop-shadow(0 0 15px rgba(255, 224, 0, 0.3));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: brightness(1) drop-shadow(0 0 0 transparent);
+  }
+}
+
+.section-reveal {
+  opacity: 0;
+}
+
+.section-reveal.is-visible {
+  animation: section-electric-flash 1.2s ease-out forwards;
+}
+
+/* Staggered card animations */
+@keyframes card-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-reveal {
+  opacity: 0;
+}
+
+.card-reveal.is-visible {
+  animation: card-slide-up 0.7s ease-out forwards;
+}
+
+/* Lightning flash for scroll bolts */
+@keyframes lightning-flash {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Gold shimmer sweep across title text */
+@keyframes gold-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #FFE000 0%,
+    #FFE000 40%,
+    #FFFFFF 50%,
+    #FFE000 60%,
+    #FFE000 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gold-shimmer 3s ease-in-out infinite;
+}
+
+/* Glitch effect for hero title */
+@keyframes glitch-1 {
+  0%,
+  90%,
+  100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  92% {
+    transform: translate(-3px, 1px);
+    opacity: 0.7;
+  }
+  94% {
+    transform: translate(3px, -1px);
+    opacity: 0.5;
+  }
+  96% {
+    transform: translate(-2px, 2px);
+    opacity: 0.6;
+  }
+  98% {
+    transform: translate(2px, -2px);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-2 {
+  0%,
+  85%,
+  100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  87% {
+    transform: translate(2px, -1px);
+    opacity: 0.5;
+  }
+  89% {
+    transform: translate(-2px, 1px);
+    opacity: 0.4;
+  }
+  91% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+.glitch-container {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-container::before,
+.glitch-container::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #FFE000;
+  pointer-events: none;
+}
+
+.glitch-container::before {
+  animation: glitch-1 5s infinite;
+  text-shadow: 2px 0 #FFE000;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch-container::after {
+  animation: glitch-2 5s infinite;
+  text-shadow: -2px 0 #FFFFFF;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+/* Electric spark particles around title */
+@keyframes electric-spark {
+  0% {
+    transform: scale(0) translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translate(var(--tx), var(--ty));
+    opacity: 0;
+  }
+}
+
+.electric-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #FFE000;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #FFE000, 0 0 12px #FFE000;
+  pointer-events: none;
+  animation: electric-spark 1.5s ease-out infinite;
+}
+
+/* Floating golden orbs in hero */
+@keyframes orb-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -30px);
+  }
+  50% {
+    transform: translate(-15px, -50px);
+  }
+  75% {
+    transform: translate(-25px, -20px);
+  }
+}
+
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 224, 0, 0.6) 0%,
+    rgba(255, 224, 0, 0.1) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  animation: orb-float 12s ease-in-out infinite;
+  filter: blur(2px);
+}
+
+/* Lightning divider animation */
+.lightning-divider-wrapper {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.lightning-divider-svg {
+  width: 100%;
+  height: 40px;
+  display: block;
+}
+
+@keyframes lightning-crackle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  45%,
+  55% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  46% {
+    opacity: 0.4;
+  }
+  54% {
+    opacity: 0.4;
+  }
+}
+
+.lightning-path-spark {
+  animation: lightning-crackle 3s ease-in-out infinite;
+}
+
+@keyframes lightning-pulse {
+  0%,
+  100% {
+    stroke-opacity: 0.8;
+    filter: drop-shadow(0 0 4px #FFE000);
+  }
+  50% {
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 10px #FFE000) drop-shadow(0 0 20px #FFE000);
+  }
+}
+
+.lightning-path-main {
+  animation: lightning-pulse 2s ease-in-out infinite;
+}
+
+/* Card hover spark burst */
+@keyframes spark-burst {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.spark-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #FFE000;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #FFE000, 0 0 16px #FFE000;
+  pointer-events: none;
+  animation: spark-burst 0.8s ease-out forwards;
+}
+
+/* Card lift on hover */
+.card-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 24px rgba(255, 224, 0, 0.5);
+}
+
+/* Navbar electric glow when scrolled */
+.navbar-electric-glow {
+  box-shadow:
+    0 1px 0 rgba(255, 224, 0, 0.6),
+    0 2px 20px rgba(255, 224, 0, 0.3);
+  border-bottom: 1px solid #FFE000 !important;
+}
+
+/* Button transitions */
 button {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* Input focus styles */
@@ -49,11 +398,6 @@ select:focus {
 ::-webkit-scrollbar-thumb {
   background: #FFE000;
   border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #FFE000;
-  opacity: 0.8;
 }
 
 /* Selection color */

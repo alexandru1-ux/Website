@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
 
 export const AnimationCard = ({ animation, onClick }) => {
-  const isVideoThumbnail = animation.thumbnail_url?.endsWith('.mp4') || animation.thumbnail_url?.endsWith('.webm');
-  
+  const cardRef = useRef(null);
+  const isVideoThumbnail =
+    animation.thumbnail_url?.endsWith('.mp4') || animation.thumbnail_url?.endsWith('.webm');
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    // Only emit spark every ~6 events for performance
+    if (Math.random() > 0.18) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const spark = document.createElement('div');
+    spark.className = 'spark-particle';
+    spark.style.left = `${x}px`;
+    spark.style.top = `${y}px`;
+    card.appendChild(spark);
+
+    setTimeout(() => spark.remove(), 800);
+  };
+
   return (
     <Card
-      className="bg-[#0a0a0a] border-[#FFE000] hover:shadow-[0_0_12px_rgba(255,224,0,0.3)] transition-all duration-300 overflow-hidden group cursor-pointer"
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      className="card-lift relative bg-[#0a0a0a] border-[#FFE000] hover:shadow-[0_0_20px_rgba(255,224,0,0.5)] transition-all duration-300 overflow-hidden group cursor-pointer"
       onClick={onClick}
     >
       <div className="relative aspect-video overflow-hidden bg-black">
