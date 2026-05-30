@@ -67,32 +67,51 @@ export const Commissions = () => {
   };
 
   const copyDiscord = async () => {
+    const text = DISCORD_HANDLE;
     let copied = false;
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(DISCORD_HANDLE);
+
+    // Method 1: Modern Clipboard API (requires secure context + permission)
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
         copied = true;
-      } else {
-        // Fallback for older browsers / restricted contexts
-        const textarea = document.createElement('textarea');
-        textarea.value = DISCORD_HANDLE;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-          copied = document.execCommand('copy');
-        } catch (_) {
-          copied = false;
-        }
-        document.body.removeChild(textarea);
+      } catch (_) {
+        copied = false;
       }
-    } catch (_) {
-      copied = false;
     }
 
-    toast(copied ? 'Copied to Clipboard' : 'Copied!', {
-      description: DISCORD_HANDLE,
+    // Method 2: Fallback using a temporary textarea + execCommand
+    if (!copied) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      // Avoid scrolling to bottom on iOS
+      textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '0';
+      textarea.style.width = '2em';
+      textarea.style.height = '2em';
+      textarea.style.padding = '0';
+      textarea.style.border = 'none';
+      textarea.style.outline = 'none';
+      textarea.style.boxShadow = 'none';
+      textarea.style.background = 'transparent';
+      textarea.style.opacity = '0';
+      textarea.setAttribute('readonly', '');
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, text.length);
+      try {
+        copied = document.execCommand('copy');
+      } catch (_) {
+        copied = false;
+      }
+      document.body.removeChild(textarea);
+    }
+
+    toast('Copied!', {
+      description: text,
+      duration: 2000,
       style: {
         background: '#FFFFFF',
         color: '#000000',
