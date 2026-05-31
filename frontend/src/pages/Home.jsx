@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'sonner';
 import { mockAnimations, categories } from '../mock';
 import { AnimationCard } from '../components/AnimationCard';
 import { AnimationModal } from '../components/AnimationModal';
@@ -7,10 +8,54 @@ import { ChevronDown } from 'lucide-react';
 import { SectionReveal, CardReveal } from '../components/SectionReveal';
 import { LightningDivider } from '../components/LightningDivider';
 
+const DISCORD_HANDLE = 'xxgoldenxx0863';
+
 export const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedAnimation, setSelectedAnimation] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const copyDiscord = async () => {
+    const text = DISCORD_HANDLE;
+    let copied = false;
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      } catch (_) {
+        copied = false;
+      }
+    }
+    if (!copied) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '0';
+      textarea.style.opacity = '0';
+      textarea.setAttribute('readonly', '');
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      textarea.setSelectionRange(0, text.length);
+      try {
+        document.execCommand('copy');
+      } catch (_) {
+        /* noop */
+      }
+      document.body.removeChild(textarea);
+    }
+    toast('Copied!', {
+      description: text,
+      duration: 2000,
+      style: {
+        background: '#FFFFFF',
+        color: '#000000',
+        border: '1px solid #FFE000',
+        boxShadow: '0 0 16px rgba(255, 224, 0, 0.5)'
+      }
+    });
+  };
 
   const filteredAnimations =
     selectedCategory === 'All'
